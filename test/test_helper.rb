@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+require "minitest/autorun"
+require "webmock/minitest"
+require_relative "../lib/lognorth"
+
+WebMock.disable_net_connect!
