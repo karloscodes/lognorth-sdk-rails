@@ -5,7 +5,7 @@ Send errors and logs from Rails to [LogNorth](https://lognorth.com) for monitori
 ## Installation
 
 ```ruby
-gem "lognorth", github: "karloscodes/lognorth-sdk-rails"
+gem "lognorth", github: "karloscodes/lognorth-sdk-ruby"
 ```
 
 ## Rails Setup
