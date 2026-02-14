@@ -16,5 +16,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/karloscodes/lognorth-sdk-ruby"
+  spec.metadata["source_code_uri"] = "https://github.com/karloscodes/lognorth-sdk-rails"
 end
