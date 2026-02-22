@@ -39,13 +39,28 @@ module LogNorth
       end
 
       def error(message, exception, context = {})
+        # Parse first backtrace line: "/path/file.rb:42:in `method_name'"
+        error_file = ""
+        error_line = 0
+        error_caller = ""
+        if exception.backtrace&.first
+          if (match = exception.backtrace.first.match(/(.+):(\d+):in [`'](.+)'/))
+            error_file = File.basename(match[1])
+            error_line = match[2].to_i
+            error_caller = match[3]
+          end
+        end
+
         event = {
           message: message,
           timestamp: Time.now.utc.iso8601,
-          error_type: exception.class.name,
           context: context.merge(
             error: exception.message,
-            backtrace: exception.backtrace&.first(20)
+            error_class: exception.class.name,
+            error_file: error_file,
+            error_line: error_line,
+            error_caller: error_caller,
+            stack_trace: exception.backtrace&.first(20)&.join("\n")
           )
         }
 
