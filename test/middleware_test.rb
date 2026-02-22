@@ -28,7 +28,9 @@ class MiddlewareTest < Minitest::Test
     assert_equal "GET", buffer.first[:context][:method]
     assert_equal "/users", buffer.first[:context][:path]
     assert_equal 200, buffer.first[:context][:status]
-    assert buffer.first[:context][:duration_ms]
+    assert buffer.first[:duration_ms]
+    assert buffer.first[:trace_id]
+    refute buffer.first[:context][:duration_ms]
   end
 
   def test_logs_error_and_reraises

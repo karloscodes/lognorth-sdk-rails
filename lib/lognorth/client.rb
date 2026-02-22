@@ -22,11 +22,30 @@ module LogNorth
       end
 
       def log(message, context = {})
+        send_event(message, context)
+      end
+
+      def error(message, exception, context = {})
+        send_error_event(message, exception, context)
+      end
+
+      def current_trace_id
+        Thread.current[:lognorth_trace_id]
+      end
+
+      def current_trace_id=(id)
+        Thread.current[:lognorth_trace_id] = id
+      end
+
+      def send_event(message, context = {}, trace_id: nil, duration_ms: nil)
+        trace_id ||= current_trace_id
         event = {
           message: message,
           timestamp: Time.now.utc.iso8601,
           context: context
         }
+        event[:trace_id] = trace_id if trace_id
+        event[:duration_ms] = duration_ms if duration_ms
 
         should_flush = false
         @mutex.synchronize do
@@ -38,8 +57,8 @@ module LogNorth
         flush if should_flush
       end
 
-      def error(message, exception, context = {})
-        # Parse first backtrace line: "/path/file.rb:42:in `method_name'"
+      def send_error_event(message, exception, context = {}, trace_id: nil, duration_ms: nil)
+        trace_id ||= current_trace_id
         error_file = ""
         error_line = 0
         error_caller = ""
@@ -63,6 +82,8 @@ module LogNorth
             stack_trace: exception.backtrace&.first(20)&.join("\n")
           )
         }
+        event[:trace_id] = trace_id if trace_id
+        event[:duration_ms] = duration_ms if duration_ms
 
         Thread.new { send_events([event], is_error: true) }
       end
