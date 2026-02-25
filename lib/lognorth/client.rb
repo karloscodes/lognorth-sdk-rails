@@ -14,11 +14,14 @@ module LogNorth
     @api_key = nil
 
     class << self
+      attr_accessor :debug
+
       def config(url, key)
         @mutex.synchronize do
           @endpoint = url.chomp("/")
           @api_key = key
         end
+        log_debug("configured with url=#{url}")
       end
 
       def log(message, context = {})
@@ -37,11 +40,11 @@ module LogNorth
         Thread.current[:lognorth_trace_id] = id
       end
 
-      def send_event(message, context = {}, trace_id: nil, duration_ms: nil)
+      def send_event(message, context = {}, trace_id: nil, duration_ms: nil, timestamp: nil)
         trace_id ||= current_trace_id
         event = {
           message: message,
-          timestamp: Time.now.utc.iso8601,
+          timestamp: (timestamp || Time.now).utc.iso8601(3),
           context: context
         }
         event[:trace_id] = trace_id if trace_id
@@ -57,7 +60,7 @@ module LogNorth
         flush if should_flush
       end
 
-      def send_error_event(message, exception, context = {}, trace_id: nil, duration_ms: nil)
+      def send_error_event(message, exception, context = {}, trace_id: nil, duration_ms: nil, timestamp: nil)
         trace_id ||= current_trace_id
         error_file = ""
         error_line = 0
@@ -72,7 +75,7 @@ module LogNorth
 
         event = {
           message: message,
-          timestamp: Time.now.utc.iso8601,
+          timestamp: (timestamp || Time.now).utc.iso8601(3),
           context: context.merge(
             error: exception.message,
             error_class: exception.class.name,
@@ -121,14 +124,20 @@ module LogNorth
         return if events.empty?
 
         endpoint, api_key = @mutex.synchronize { [@endpoint, @api_key] }
-        return unless endpoint
+        unless endpoint
+          log_debug("skipping send: no endpoint configured")
+          return
+        end
 
         if @backoff_until && Time.now < @backoff_until
+          log_debug("skipping send: backing off until #{@backoff_until}")
           requeue(events) unless is_error
           return
         end
 
         uri = URI("#{endpoint}/api/v1/events/batch")
+        log_debug("sending #{events.size} event(s) to #{uri}")
+
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = uri.scheme == "https"
         http.open_timeout = 5
@@ -140,17 +149,25 @@ module LogNorth
         request.body = JSON.generate(events: events)
 
         response = http.request(request)
+        log_debug("response: #{response.code} #{response.body}")
 
         if response.code == "429"
           @mutex.synchronize { @backoff_until = Time.now + 5 }
           requeue(events) unless is_error
         end
-      rescue StandardError
+      rescue StandardError => e
+        log_debug("send failed: #{e.class}: #{e.message}")
         requeue(events) if is_error
       end
 
       def requeue(events)
         @mutex.synchronize { @buffer = events + @buffer }
+      end
+
+      def log_debug(msg)
+        return unless @debug
+
+        $stdout.puts "[LogNorth] #{msg}"
       end
     end
   end

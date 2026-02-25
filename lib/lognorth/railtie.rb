@@ -6,38 +6,52 @@ module LogNorth
     config.lognorth.enabled = true
     config.lognorth.middleware = true
     config.lognorth.error_subscriber = true
+    config.lognorth.active_job = true
 
-    initializer "lognorth.configure" do |app|
+    initializer "lognorth.middleware" do |app|
+      if app.config.lognorth.enabled && app.config.lognorth.middleware
+        app.middleware.use LogNorth::Middleware
+      end
+    end
+
+    config.after_initialize do |app|
+      $stdout.puts "[LogNorth] after_initialize running"
       next unless app.config.lognorth.enabled
 
-      url = app.config.lognorth.url || credentials_url(app)
-      key = app.config.lognorth.api_key || credentials_api_key(app)
+      url = app.config.lognorth.url
+      key = app.config.lognorth.api_key
+
+      unless url
+        begin
+          url = app.credentials.dig(:lognorth, :url)
+        rescue StandardError
+          nil
+        end
+      end
+
+      unless key
+        begin
+          key = app.credentials.dig(:lognorth, :api_key)
+        rescue StandardError
+          nil
+        end
+      end
 
       if url && key
         LogNorth.config(url, key)
-
-        if app.config.lognorth.middleware
-          app.middleware.use LogNorth::Middleware
-        end
+        LogNorth::Client.debug = Rails.env.local?
 
         if app.config.lognorth.error_subscriber && Rails.version >= "7.0"
           Rails.error.subscribe(LogNorth::ErrorSubscriber.new)
         end
+
+        if app.config.lognorth.active_job && defined?(ActiveJob)
+          require "lognorth/active_job_subscriber"
+          LogNorth::ActiveJobSubscriber.attach
+        end
+      else
+        $stdout.puts "[LogNorth] not configured: url=#{url.inspect} api_key=#{key ? '[set]' : 'nil'}"
       end
-    end
-
-    private
-
-    def credentials_url(app)
-      app.credentials.dig(:lognorth, :url)
-    rescue StandardError
-      nil
-    end
-
-    def credentials_api_key(app)
-      app.credentials.dig(:lognorth, :api_key)
-    rescue StandardError
-      nil
     end
   end
 end
