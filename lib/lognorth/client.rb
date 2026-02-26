@@ -5,6 +5,8 @@ require "json"
 require "uri"
 
 module LogNorth
+  MAX_BUFFER = 1000
+
   module Client
     @mutex = Mutex.new
     @buffer = []
@@ -53,6 +55,7 @@ module LogNorth
         should_flush = false
         @mutex.synchronize do
           @buffer << event
+          @buffer = @buffer.last(MAX_BUFFER) if @buffer.size > MAX_BUFFER
           schedule_flush
           should_flush = @buffer.size >= 10
         end
@@ -111,13 +114,15 @@ module LogNorth
 
         @timer = Thread.new do
           sleep 5
+          @mutex.synchronize { @timer = nil }
           flush
         end
       end
 
       def cancel_timer
-        @timer&.kill
-        @timer = nil
+        if @timer
+          @timer = nil
+        end
       end
 
       def send_events(events, is_error:)
@@ -131,7 +136,7 @@ module LogNorth
 
         if @backoff_until && Time.now < @backoff_until
           log_debug("skipping send: backing off until #{@backoff_until}")
-          requeue(events) unless is_error
+          requeue(events)
           return
         end
 
@@ -153,7 +158,7 @@ module LogNorth
 
         if response.code == "429"
           @mutex.synchronize { @backoff_until = Time.now + 5 }
-          requeue(events) unless is_error
+          requeue(events)
         end
       rescue StandardError => e
         log_debug("send failed: #{e.class}: #{e.message}")
@@ -161,7 +166,10 @@ module LogNorth
       end
 
       def requeue(events)
-        @mutex.synchronize { @buffer = events + @buffer }
+        @mutex.synchronize do
+          @buffer = events + @buffer
+          @buffer = @buffer.first(MAX_BUFFER) if @buffer.size > MAX_BUFFER
+        end
       end
 
       def log_debug(msg)
