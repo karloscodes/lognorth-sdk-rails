@@ -9,6 +9,13 @@ module LogNorth
     end
 
     def call(env)
+      path = env["PATH_INFO"]
+
+      # Skip ignored paths (health checks, metrics, etc.)
+      if ignored_path?(path)
+        return @app.call(env)
+      end
+
       start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       start_time = Time.now
       trace_id = env["HTTP_X_TRACE_ID"].to_s.strip
@@ -43,6 +50,15 @@ module LogNorth
       )
       LogNorth::Client.current_trace_id = nil
       raise
+    end
+
+    private
+
+    def ignored_path?(path)
+      ignored_paths = Rails.application.config.lognorth.ignored_paths rescue []
+      return false if ignored_paths.nil? || ignored_paths.empty?
+
+      ignored_paths.any? { |p| path == p || path.start_with?("#{p}/") }
     end
   end
 end

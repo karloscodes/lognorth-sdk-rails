@@ -1,0 +1,1075 @@
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='Example'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Example'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Example'*/[0m
+Started GET "/" for ::1 at 2026-02-25 19:35:55 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Example'*/[0m
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-02-25 19:35:56 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for ::1 at 2026-02-25 19:36:04 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:37:28 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:37:40 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Example'*/[0m
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-02-25 19:37:40 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for ::1 at 2026-02-25 19:38:00 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:38:22 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Example'*/[0m
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:39:32 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Example'*/[0m
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:40:08 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Example'*/[0m
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:41:00 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Example'*/[0m
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:51 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Example'*/[0m
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 2.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:52 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:52 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.1ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:52 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.3ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:52 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:52 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:53 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:53 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:53 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:53 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:53 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:53 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:54 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:54 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:54 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:54 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:54 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:54 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:55 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:55 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:44:55 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:01 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 4ms (Views: 2.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:03 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:03 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 30ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 26.9ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:03 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:03 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 3ms (Views: 2.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.4ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:04 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:04 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 3ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:04 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:04 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:04 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:05 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:05 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:45:05 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:51:21 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 3ms (Views: 1.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-02-25 19:51:21 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/error" for ::1 at 2026-02-25 19:51:21 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:51:22 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:51:22 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:51:22 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 3ms (Views: 2.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:51:22 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:57:16 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Example'*/[0m
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 1.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-02-25 19:57:16 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/error" for ::1 at 2026-02-25 19:57:17 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 3ms (Views: 1.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-02-25 19:58:11 +0100
+Processing by HomeController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 19:58:13 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 3ms (Views: 2.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/crash" for ::1 at 2026-02-25 19:58:22 +0100
+Processing by HomeController#crash as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+RuntimeError (unhandled crash!):
+  
+app/controllers/home_controller.rb:15:in 'HomeController#crash'
+Started GET "/checkout" for ::1 at 2026-02-25 20:09:39 +0100
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-02-25 20:09:39 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/checkout" for ::1 at 2026-02-25 20:10:05 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Example'*/[0m
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/checkout" for ::1 at 2026-02-25 20:15:04 +0100
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 16ms (Views: 2.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-02-25 20:15:04 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/error" for ::1 at 2026-02-25 20:15:05 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/crash" for ::1 at 2026-02-25 20:15:07 +0100
+Processing by HomeController#crash as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+RuntimeError (unhandled crash!):
+  
+app/controllers/home_controller.rb:15:in 'HomeController#crash'
+Started GET "/favicon.ico" for ::1 at 2026-02-25 20:49:47 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Example'*/[0m
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/job" for ::1 at 2026-02-25 20:49:50 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 464fa844-d298-41ac-a082-9cfd90e467f1) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 22ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+[ActiveJob] [ExampleJob] [464fa844-d298-41ac-a082-9cfd90e467f1] Performing ExampleJob (Job ID: 464fa844-d298-41ac-a082-9cfd90e467f1) from Async(default) enqueued at 2026-02-25T19:49:50.582337000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [464fa844-d298-41ac-a082-9cfd90e467f1] Performed ExampleJob (Job ID: 464fa844-d298-41ac-a082-9cfd90e467f1) from Async(default) in 105.35ms
+Started GET "/job" for ::1 at 2026-02-25 20:50:56 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 4e67942e-1cbf-43bd-b81c-79bd65a7e074) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [4e67942e-1cbf-43bd-b81c-79bd65a7e074] Performing ExampleJob (Job ID: 4e67942e-1cbf-43bd-b81c-79bd65a7e074) from Async(default) enqueued at 2026-02-25T19:50:56.268518000Z with arguments: "test-run"
+Started GET "/favicon.ico" for ::1 at 2026-02-25 20:50:56 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+[ActiveJob] [ExampleJob] [4e67942e-1cbf-43bd-b81c-79bd65a7e074] Performed ExampleJob (Job ID: 4e67942e-1cbf-43bd-b81c-79bd65a7e074) from Async(default) in 104.88ms
+Started GET "/job" for ::1 at 2026-02-25 20:51:05 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: d1e43dcf-c079-4f20-bb46-4a38d71f9b13) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [d1e43dcf-c079-4f20-bb46-4a38d71f9b13] Performing ExampleJob (Job ID: d1e43dcf-c079-4f20-bb46-4a38d71f9b13) from Async(default) enqueued at 2026-02-25T19:51:05.943646000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [d1e43dcf-c079-4f20-bb46-4a38d71f9b13] Performed ExampleJob (Job ID: d1e43dcf-c079-4f20-bb46-4a38d71f9b13) from Async(default) in 129.76ms
+Started GET "/job" for ::1 at 2026-02-25 20:51:11 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 6d9dd1f0-f64d-4cd1-91c5-9444428c3151) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [6d9dd1f0-f64d-4cd1-91c5-9444428c3151] Performing ExampleJob (Job ID: 6d9dd1f0-f64d-4cd1-91c5-9444428c3151) from Async(default) enqueued at 2026-02-25T19:51:11.709254000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [6d9dd1f0-f64d-4cd1-91c5-9444428c3151] Performed ExampleJob (Job ID: 6d9dd1f0-f64d-4cd1-91c5-9444428c3151) from Async(default) in 102.34ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:50 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 57c3e690-b2fa-4e7c-bc9b-54cc9712a4fa) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 1.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [57c3e690-b2fa-4e7c-bc9b-54cc9712a4fa] Performing ExampleJob (Job ID: 57c3e690-b2fa-4e7c-bc9b-54cc9712a4fa) from Async(default) enqueued at 2026-02-25T19:55:50.060664000Z with arguments: "test-run"
+Started GET "/favicon.ico" for ::1 at 2026-02-25 20:55:50 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+[ActiveJob] [ExampleJob] [57c3e690-b2fa-4e7c-bc9b-54cc9712a4fa] Performed ExampleJob (Job ID: 57c3e690-b2fa-4e7c-bc9b-54cc9712a4fa) from Async(default) in 101.84ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:50 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 09e376c4-b63b-45ce-a47a-f5660f061edf) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [09e376c4-b63b-45ce-a47a-f5660f061edf] Performing ExampleJob (Job ID: 09e376c4-b63b-45ce-a47a-f5660f061edf) from Async(default) enqueued at 2026-02-25T19:55:50.545002000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [09e376c4-b63b-45ce-a47a-f5660f061edf] Performed ExampleJob (Job ID: 09e376c4-b63b-45ce-a47a-f5660f061edf) from Async(default) in 112.73ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:50 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 77756704-6adf-46ea-bae4-34bc85b32974) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [77756704-6adf-46ea-bae4-34bc85b32974] Performing ExampleJob (Job ID: 77756704-6adf-46ea-bae4-34bc85b32974) from Async(default) enqueued at 2026-02-25T19:55:50.775065000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [77756704-6adf-46ea-bae4-34bc85b32974] Performed ExampleJob (Job ID: 77756704-6adf-46ea-bae4-34bc85b32974) from Async(default) in 103.88ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:50 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: a66566c4-7146-4cfe-9ec5-b7ee55bdf8c0) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [a66566c4-7146-4cfe-9ec5-b7ee55bdf8c0] Performing ExampleJob (Job ID: a66566c4-7146-4cfe-9ec5-b7ee55bdf8c0) from Async(default) enqueued at 2026-02-25T19:55:50.941911000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [a66566c4-7146-4cfe-9ec5-b7ee55bdf8c0] Performed ExampleJob (Job ID: a66566c4-7146-4cfe-9ec5-b7ee55bdf8c0) from Async(default) in 105.51ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:51 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 983b3ab9-6618-403c-8261-f6c7298dec65) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [983b3ab9-6618-403c-8261-f6c7298dec65] Performing ExampleJob (Job ID: 983b3ab9-6618-403c-8261-f6c7298dec65) from Async(default) enqueued at 2026-02-25T19:55:51.123122000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [983b3ab9-6618-403c-8261-f6c7298dec65] Performed ExampleJob (Job ID: 983b3ab9-6618-403c-8261-f6c7298dec65) from Async(default) in 114.63ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:51 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: d4012ee0-c79c-4a82-b596-058a9a80809d) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [d4012ee0-c79c-4a82-b596-058a9a80809d] Performing ExampleJob (Job ID: d4012ee0-c79c-4a82-b596-058a9a80809d) from Async(default) enqueued at 2026-02-25T19:55:51.308275000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [d4012ee0-c79c-4a82-b596-058a9a80809d] Performed ExampleJob (Job ID: d4012ee0-c79c-4a82-b596-058a9a80809d) from Async(default) in 105.43ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:51 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 4804d527-54cd-4dfb-b252-ba7c6b74ebec) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [4804d527-54cd-4dfb-b252-ba7c6b74ebec] Performing ExampleJob (Job ID: 4804d527-54cd-4dfb-b252-ba7c6b74ebec) from Async(default) enqueued at 2026-02-25T19:55:51.487789000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [4804d527-54cd-4dfb-b252-ba7c6b74ebec] Performed ExampleJob (Job ID: 4804d527-54cd-4dfb-b252-ba7c6b74ebec) from Async(default) in 101.48ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:51 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 264c652d-47f5-4e99-b12a-6ce93c1c1569) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [264c652d-47f5-4e99-b12a-6ce93c1c1569] Performing ExampleJob (Job ID: 264c652d-47f5-4e99-b12a-6ce93c1c1569) from Async(default) enqueued at 2026-02-25T19:55:51.667395000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [264c652d-47f5-4e99-b12a-6ce93c1c1569] Performed ExampleJob (Job ID: 264c652d-47f5-4e99-b12a-6ce93c1c1569) from Async(default) in 105.42ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:52 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: cbf4b26e-4f57-4a93-9da6-0b4064d8d7bf) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [cbf4b26e-4f57-4a93-9da6-0b4064d8d7bf] Performing ExampleJob (Job ID: cbf4b26e-4f57-4a93-9da6-0b4064d8d7bf) from Async(default) enqueued at 2026-02-25T19:55:52.091208000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [cbf4b26e-4f57-4a93-9da6-0b4064d8d7bf] Performed ExampleJob (Job ID: cbf4b26e-4f57-4a93-9da6-0b4064d8d7bf) from Async(default) in 104.31ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:52 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 7a67e785-3627-47fb-99c3-9f44714d2316) to Async(default) with arguments: "test-run"
+[ActiveJob] [ExampleJob] [7a67e785-3627-47fb-99c3-9f44714d2316] Performing ExampleJob (Job ID: 7a67e785-3627-47fb-99c3-9f44714d2316) from Async(default) enqueued at 2026-02-25T19:55:52.275348000Z with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [7a67e785-3627-47fb-99c3-9f44714d2316] Performed ExampleJob (Job ID: 7a67e785-3627-47fb-99c3-9f44714d2316) from Async(default) in 105.78ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:52 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: b2c43887-c1c6-4f3f-8fbb-de99c6676a06) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [b2c43887-c1c6-4f3f-8fbb-de99c6676a06] Performing ExampleJob (Job ID: b2c43887-c1c6-4f3f-8fbb-de99c6676a06) from Async(default) enqueued at 2026-02-25T19:55:52.474642000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [b2c43887-c1c6-4f3f-8fbb-de99c6676a06] Performed ExampleJob (Job ID: b2c43887-c1c6-4f3f-8fbb-de99c6676a06) from Async(default) in 102.36ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:52 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 7e2a4f41-f056-459b-ab50-7aa3ce7bb3b0) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [7e2a4f41-f056-459b-ab50-7aa3ce7bb3b0] Performing ExampleJob (Job ID: 7e2a4f41-f056-459b-ab50-7aa3ce7bb3b0) from Async(default) enqueued at 2026-02-25T19:55:52.635823000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [7e2a4f41-f056-459b-ab50-7aa3ce7bb3b0] Performed ExampleJob (Job ID: 7e2a4f41-f056-459b-ab50-7aa3ce7bb3b0) from Async(default) in 111.25ms
+Started GET "/crash" for ::1 at 2026-02-25 20:55:53 +0100
+Processing by HomeController#crash as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+RuntimeError (unhandled crash!):
+  
+app/controllers/home_controller.rb:15:in 'HomeController#crash'
+Started GET "/crash" for ::1 at 2026-02-25 20:55:53 +0100
+Processing by HomeController#crash as HTML
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+RuntimeError (unhandled crash!):
+  
+app/controllers/home_controller.rb:15:in 'HomeController#crash'
+Started GET "/crash" for ::1 at 2026-02-25 20:55:53 +0100
+Processing by HomeController#crash as HTML
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+RuntimeError (unhandled crash!):
+  
+app/controllers/home_controller.rb:15:in 'HomeController#crash'
+Started GET "/crash" for ::1 at 2026-02-25 20:55:53 +0100
+Processing by HomeController#crash as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+  
+RuntimeError (unhandled crash!):
+  
+app/controllers/home_controller.rb:15:in 'HomeController#crash'
+Started GET "/crash" for ::1 at 2026-02-25 20:55:53 +0100
+Processing by HomeController#crash as HTML
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+RuntimeError (unhandled crash!):
+  
+app/controllers/home_controller.rb:15:in 'HomeController#crash'
+Started GET "/error" for ::1 at 2026-02-25 20:55:54 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 3ms (Views: 1.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 20:55:54 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 20:55:54 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 20:55:54 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 20:55:54 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/checkout" for ::1 at 2026-02-25 20:55:55 +0100
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/checkout" for ::1 at 2026-02-25 20:55:55 +0100
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/checkout" for ::1 at 2026-02-25 20:55:55 +0100
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/checkout" for ::1 at 2026-02-25 20:55:56 +0100
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/checkout" for ::1 at 2026-02-25 20:55:56 +0100
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/job" for ::1 at 2026-02-25 20:55:56 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: f4de270b-545a-4a1e-83de-e14870c77586) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [f4de270b-545a-4a1e-83de-e14870c77586] Performing ExampleJob (Job ID: f4de270b-545a-4a1e-83de-e14870c77586) from Async(default) enqueued at 2026-02-25T19:55:56.593378000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [f4de270b-545a-4a1e-83de-e14870c77586] Performed ExampleJob (Job ID: f4de270b-545a-4a1e-83de-e14870c77586) from Async(default) in 105.58ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:56 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 6bd41605-2d39-4116-9a1e-3966c8cc1b02) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.6ms)
+
+
+[ActiveJob] [ExampleJob] [6bd41605-2d39-4116-9a1e-3966c8cc1b02] Performing ExampleJob (Job ID: 6bd41605-2d39-4116-9a1e-3966c8cc1b02) from Async(default) enqueued at 2026-02-25T19:55:56.806550000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [6bd41605-2d39-4116-9a1e-3966c8cc1b02] Performed ExampleJob (Job ID: 6bd41605-2d39-4116-9a1e-3966c8cc1b02) from Async(default) in 102.09ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:56 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 5fa712f6-b725-48bc-8f6d-b619bdecb93c) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [5fa712f6-b725-48bc-8f6d-b619bdecb93c] Performing ExampleJob (Job ID: 5fa712f6-b725-48bc-8f6d-b619bdecb93c) from Async(default) enqueued at 2026-02-25T19:55:56.990449000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [5fa712f6-b725-48bc-8f6d-b619bdecb93c] Performed ExampleJob (Job ID: 5fa712f6-b725-48bc-8f6d-b619bdecb93c) from Async(default) in 105.13ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:57 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 61d77b75-2038-4aa8-99b6-aee7bf410636) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [61d77b75-2038-4aa8-99b6-aee7bf410636] Performing ExampleJob (Job ID: 61d77b75-2038-4aa8-99b6-aee7bf410636) from Async(default) enqueued at 2026-02-25T19:55:57.167407000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [61d77b75-2038-4aa8-99b6-aee7bf410636] Performed ExampleJob (Job ID: 61d77b75-2038-4aa8-99b6-aee7bf410636) from Async(default) in 105.87ms
+Started GET "/job" for ::1 at 2026-02-25 20:55:57 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 58fbcf2a-8517-45e4-a656-9bebbf715004) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [58fbcf2a-8517-45e4-a656-9bebbf715004] Performing ExampleJob (Job ID: 58fbcf2a-8517-45e4-a656-9bebbf715004) from Async(default) enqueued at 2026-02-25T19:55:57.339717000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [58fbcf2a-8517-45e4-a656-9bebbf715004] Performed ExampleJob (Job ID: 58fbcf2a-8517-45e4-a656-9bebbf715004) from Async(default) in 102.1ms
+Started GET "/job" for ::1 at 2026-02-25 20:57:06 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Example'*/[0m
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 68792fcc-9996-428e-b254-7e2574a09022) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 1.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [68792fcc-9996-428e-b254-7e2574a09022] Performing ExampleJob (Job ID: 68792fcc-9996-428e-b254-7e2574a09022) from Async(default) enqueued at 2026-02-25T19:57:06.203655000Z with arguments: "test-run"
+Started GET "/favicon.ico" for ::1 at 2026-02-25 20:57:06 +0100
+Started GET "/job" for ::1 at 2026-02-25 20:57:06 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 75cb012f-d098-4f85-9aca-4ac79af384eb) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 11.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 6.8ms)
+
+
+[ActiveJob] [ExampleJob] [75cb012f-d098-4f85-9aca-4ac79af384eb] Performing ExampleJob (Job ID: 75cb012f-d098-4f85-9aca-4ac79af384eb) from Async(default) enqueued at 2026-02-25T19:57:06.256229000Z with arguments: "test-run"
+Started GET "/favicon.ico" for ::1 at 2026-02-25 20:57:06 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+[ActiveJob] [ExampleJob] [68792fcc-9996-428e-b254-7e2574a09022] Performed ExampleJob (Job ID: 68792fcc-9996-428e-b254-7e2574a09022) from Async(default) in 107.75ms
+[ActiveJob] [ExampleJob] [75cb012f-d098-4f85-9aca-4ac79af384eb] Performed ExampleJob (Job ID: 75cb012f-d098-4f85-9aca-4ac79af384eb) from Async(default) in 104.8ms
+Started GET "/job" for ::1 at 2026-02-25 20:57:06 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 240b0915-a98c-4ef0-a912-f850b195118d) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [240b0915-a98c-4ef0-a912-f850b195118d] Performing ExampleJob (Job ID: 240b0915-a98c-4ef0-a912-f850b195118d) from Async(default) enqueued at 2026-02-25T19:57:06.451315000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [240b0915-a98c-4ef0-a912-f850b195118d] Performed ExampleJob (Job ID: 240b0915-a98c-4ef0-a912-f850b195118d) from Async(default) in 108.08ms
+Started GET "/job" for ::1 at 2026-02-25 20:57:06 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 12d41b7d-3e94-4034-a352-c0099f155f4c) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [12d41b7d-3e94-4034-a352-c0099f155f4c] Performing ExampleJob (Job ID: 12d41b7d-3e94-4034-a352-c0099f155f4c) from Async(default) enqueued at 2026-02-25T19:57:06.666334000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [12d41b7d-3e94-4034-a352-c0099f155f4c] Performed ExampleJob (Job ID: 12d41b7d-3e94-4034-a352-c0099f155f4c) from Async(default) in 109.88ms
+Started GET "/job" for ::1 at 2026-02-25 20:57:06 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: b17486ae-4572-499f-aa8d-91fd1c1c59bb) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [b17486ae-4572-499f-aa8d-91fd1c1c59bb] Performing ExampleJob (Job ID: b17486ae-4572-499f-aa8d-91fd1c1c59bb) from Async(default) enqueued at 2026-02-25T19:57:06.851926000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [b17486ae-4572-499f-aa8d-91fd1c1c59bb] Performed ExampleJob (Job ID: b17486ae-4572-499f-aa8d-91fd1c1c59bb) from Async(default) in 106.88ms
+Started GET "/job" for ::1 at 2026-02-25 20:57:07 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 8f9ffc29-d796-43c4-bfa2-021df7ad9a68) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [8f9ffc29-d796-43c4-bfa2-021df7ad9a68] Performing ExampleJob (Job ID: 8f9ffc29-d796-43c4-bfa2-021df7ad9a68) from Async(default) enqueued at 2026-02-25T19:57:07.058894000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [8f9ffc29-d796-43c4-bfa2-021df7ad9a68] Performed ExampleJob (Job ID: 8f9ffc29-d796-43c4-bfa2-021df7ad9a68) from Async(default) in 111.5ms
+Started GET "/crash" for ::1 at 2026-02-25 20:57:07 +0100
+Started GET "/job" for ::1 at 2026-02-25 20:57:07 +0100
+Processing by HomeController#crash as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+RuntimeError (unhandled crash!):
+  
+app/controllers/home_controller.rb:15:in 'HomeController#crash'
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 7abbfc20-6344-4936-9ab4-087b9e7060d3) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [7abbfc20-6344-4936-9ab4-087b9e7060d3] Performing ExampleJob (Job ID: 7abbfc20-6344-4936-9ab4-087b9e7060d3) from Async(default) enqueued at 2026-02-25T19:57:07.429444000Z with arguments: "test-run"
+Started GET "/crash" for ::1 at 2026-02-25 20:57:07 +0100
+Started GET "/job" for ::1 at 2026-02-25 20:57:07 +0100
+Processing by HomeController#crash as HTML
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by HomeController#job as HTML
+  
+RuntimeError (unhandled crash!):
+  
+app/controllers/home_controller.rb:15:in 'HomeController#crash'
+[ActiveJob] Enqueued ExampleJob (Job ID: 4dcfa285-7c5a-408f-ad69-a6d320b2be3d) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+[ActiveJob] [ExampleJob] [7abbfc20-6344-4936-9ab4-087b9e7060d3] Performed ExampleJob (Job ID: 7abbfc20-6344-4936-9ab4-087b9e7060d3) from Async(default) in 117.33ms
+[ActiveJob] [ExampleJob] [4dcfa285-7c5a-408f-ad69-a6d320b2be3d] Performing ExampleJob (Job ID: 4dcfa285-7c5a-408f-ad69-a6d320b2be3d) from Async(default) enqueued at 2026-02-25T19:57:07.611744000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [4dcfa285-7c5a-408f-ad69-a6d320b2be3d] Performed ExampleJob (Job ID: 4dcfa285-7c5a-408f-ad69-a6d320b2be3d) from Async(default) in 106.7ms
+Started GET "/crash" for ::1 at 2026-02-25 20:57:07 +0100
+Started GET "/job" for ::1 at 2026-02-25 20:57:07 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 3986686a-57d5-4be6-869b-91cd0ab36e58) to Async(default) with arguments: "test-run"
+Processing by HomeController#crash as HTML
+  Rendering text template
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+  
+RuntimeError (unhandled crash!):
+  
+app/controllers/home_controller.rb:15:in 'HomeController#crash'
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [3986686a-57d5-4be6-869b-91cd0ab36e58] Performing ExampleJob (Job ID: 3986686a-57d5-4be6-869b-91cd0ab36e58) from Async(default) enqueued at 2026-02-25T19:57:07.793177000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [3986686a-57d5-4be6-869b-91cd0ab36e58] Performed ExampleJob (Job ID: 3986686a-57d5-4be6-869b-91cd0ab36e58) from Async(default) in 106.86ms
+Started GET "/crash" for ::1 at 2026-02-25 20:57:07 +0100
+Started GET "/job" for ::1 at 2026-02-25 20:57:07 +0100
+Processing by HomeController#crash as HTML
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+  
+RuntimeError (unhandled crash!):
+  
+app/controllers/home_controller.rb:15:in 'HomeController#crash'
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: b45d4971-c3e4-4096-9f52-912e9a80a2bc) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [b45d4971-c3e4-4096-9f52-912e9a80a2bc] Performing ExampleJob (Job ID: b45d4971-c3e4-4096-9f52-912e9a80a2bc) from Async(default) enqueued at 2026-02-25T19:57:08.008350000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [b45d4971-c3e4-4096-9f52-912e9a80a2bc] Performed ExampleJob (Job ID: b45d4971-c3e4-4096-9f52-912e9a80a2bc) from Async(default) in 106.51ms
+Started GET "/crash" for ::1 at 2026-02-25 20:57:08 +0100
+Started GET "/job" for ::1 at 2026-02-25 20:57:08 +0100
+Processing by HomeController#crash as HTML
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+RuntimeError (unhandled crash!):
+  
+app/controllers/home_controller.rb:15:in 'HomeController#crash'
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 2255369d-4daa-4999-ab1d-664fc2b62d49) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [2255369d-4daa-4999-ab1d-664fc2b62d49] Performing ExampleJob (Job ID: 2255369d-4daa-4999-ab1d-664fc2b62d49) from Async(default) enqueued at 2026-02-25T19:57:08.185899000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [2255369d-4daa-4999-ab1d-664fc2b62d49] Performed ExampleJob (Job ID: 2255369d-4daa-4999-ab1d-664fc2b62d49) from Async(default) in 107.38ms
+Started GET "/error" for ::1 at 2026-02-25 20:57:08 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 20:57:08 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 3ms (Views: 1.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 20:57:08 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 20:57:09 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/error" for ::1 at 2026-02-25 20:57:09 +0100
+Processing by HomeController#error as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 2ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/checkout" for ::1 at 2026-02-25 20:57:09 +0100
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/checkout" for ::1 at 2026-02-25 20:57:09 +0100
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/checkout" for ::1 at 2026-02-25 20:57:10 +0100
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/checkout" for ::1 at 2026-02-25 20:57:10 +0100
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/checkout" for ::1 at 2026-02-25 20:57:10 +0100
+Processing by HomeController#checkout as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/job" for ::1 at 2026-02-25 20:57:10 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 29dae283-b200-4bf5-bb93-2d91029dd98b) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [29dae283-b200-4bf5-bb93-2d91029dd98b] Performing ExampleJob (Job ID: 29dae283-b200-4bf5-bb93-2d91029dd98b) from Async(default) enqueued at 2026-02-25T19:57:10.944431000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [29dae283-b200-4bf5-bb93-2d91029dd98b] Performed ExampleJob (Job ID: 29dae283-b200-4bf5-bb93-2d91029dd98b) from Async(default) in 110.26ms
+Started GET "/job" for ::1 at 2026-02-25 20:57:11 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: deede17b-00eb-435b-8e59-86365aa55d8e) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [deede17b-00eb-435b-8e59-86365aa55d8e] Performing ExampleJob (Job ID: deede17b-00eb-435b-8e59-86365aa55d8e) from Async(default) enqueued at 2026-02-25T19:57:11.141594000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [deede17b-00eb-435b-8e59-86365aa55d8e] Performed ExampleJob (Job ID: deede17b-00eb-435b-8e59-86365aa55d8e) from Async(default) in 104.58ms
+Started GET "/job" for ::1 at 2026-02-25 20:57:11 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 8ad313bb-7b6a-4a76-a26f-6ce5009869b7) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [8ad313bb-7b6a-4a76-a26f-6ce5009869b7] Performing ExampleJob (Job ID: 8ad313bb-7b6a-4a76-a26f-6ce5009869b7) from Async(default) enqueued at 2026-02-25T19:57:11.335086000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [8ad313bb-7b6a-4a76-a26f-6ce5009869b7] Performed ExampleJob (Job ID: 8ad313bb-7b6a-4a76-a26f-6ce5009869b7) from Async(default) in 110.99ms
+Started GET "/job" for ::1 at 2026-02-25 20:57:11 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 7a206930-1396-4946-b8a2-b3a1abff1bb9) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActiveJob] [ExampleJob] [7a206930-1396-4946-b8a2-b3a1abff1bb9] Performing ExampleJob (Job ID: 7a206930-1396-4946-b8a2-b3a1abff1bb9) from Async(default) enqueued at 2026-02-25T19:57:11.519746000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [7a206930-1396-4946-b8a2-b3a1abff1bb9] Performed ExampleJob (Job ID: 7a206930-1396-4946-b8a2-b3a1abff1bb9) from Async(default) in 110.36ms
+Started GET "/job" for ::1 at 2026-02-25 20:57:11 +0100
+Processing by HomeController#job as HTML
+[ActiveJob] Enqueued ExampleJob (Job ID: 4db054a9-2f66-4916-b6f0-04c8266ca96e) to Async(default) with arguments: "test-run"
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+[ActiveJob] [ExampleJob] [4db054a9-2f66-4916-b6f0-04c8266ca96e] Performing ExampleJob (Job ID: 4db054a9-2f66-4916-b6f0-04c8266ca96e) from Async(default) enqueued at 2026-02-25T19:57:11.708188000Z with arguments: "test-run"
+[ActiveJob] [ExampleJob] [4db054a9-2f66-4916-b6f0-04c8266ca96e] Performed ExampleJob (Job ID: 4db054a9-2f66-4916-b6f0-04c8266ca96e) from Async(default) in 111.42ms

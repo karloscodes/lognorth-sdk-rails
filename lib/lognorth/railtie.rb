@@ -7,6 +7,7 @@ module LogNorth
     config.lognorth.middleware = true
     config.lognorth.error_subscriber = true
     config.lognorth.active_job = true
+    config.lognorth.ignored_paths = []  # Paths to skip logging (e.g., ["/healthz", "/_health"])
 
     initializer "lognorth.middleware" do |app|
       if app.config.lognorth.enabled && app.config.lognorth.middleware
