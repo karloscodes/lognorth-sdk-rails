@@ -24,6 +24,12 @@ module LogNorth
 
       status, headers, response = @app.call(env)
 
+      # Don't track requests that didn't match any route (scanner noise)
+      if status == 404 && !env["action_controller.instance"]
+        LogNorth::Client.current_trace_id = nil
+        return [status, headers, response]
+      end
+
       duration_ms = ((Process.clock_gettime(Process::CLOCK_MONOTONIC) - start) * 1000).round
       headers["X-Trace-ID"] = trace_id
 
