@@ -33,9 +33,12 @@ module LogNorth
       duration_ms = ((Process.clock_gettime(Process::CLOCK_MONOTONIC) - start) * 1000).round
       headers["X-Trace-ID"] = trace_id
 
+      context = { method: env["REQUEST_METHOD"], path: env["PATH_INFO"], status: status }
+      merge_route_info!(context, env)
+
       LogNorth::Client.send_event(
         "#{env['REQUEST_METHOD']} #{env['PATH_INFO']} → #{status}",
-        { method: env["REQUEST_METHOD"], path: env["PATH_INFO"], status: status },
+        context,
         trace_id: trace_id,
         duration_ms: duration_ms,
         timestamp: start_time
@@ -65,6 +68,19 @@ module LogNorth
       return false if ignored_paths.nil? || ignored_paths.empty?
 
       ignored_paths.any? { |p| path == p || path.start_with?("#{p}/") }
+    end
+
+    # Rails populates action_controller.instance after dispatch so the
+    # controller/action names — and the named route when available —
+    # can be pulled straight off the env.
+    def merge_route_info!(context, env)
+      controller = env["action_controller.instance"]
+      return unless controller
+
+      klass = controller.class.name
+      action = controller.respond_to?(:action_name) ? controller.action_name : nil
+      context[:controller] = klass if klass
+      context[:action] = action if action
     end
   end
 end

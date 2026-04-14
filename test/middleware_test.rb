@@ -87,4 +87,34 @@ class MiddlewareTest < Minitest::Test
 
     sleep 0.1 # wait for error thread
   end
+
+  def test_populates_controller_and_action_from_action_controller_instance
+    fake_controller = Class.new do
+      def self.name; "ConversationsController"; end
+      def action_name; "index"; end
+    end.new
+
+    app = ->(env) {
+      env["action_controller.instance"] = fake_controller
+      [200, {}, ["OK"]]
+    }
+    middleware = LogNorth::Middleware.new(app)
+
+    middleware.call({ "REQUEST_METHOD" => "GET", "PATH_INFO" => "/conversations" })
+
+    ctx = LogNorth::Client.instance_variable_get(:@buffer).first[:context]
+    assert_equal "ConversationsController", ctx[:controller]
+    assert_equal "index", ctx[:action]
+  end
+
+  def test_omits_route_fields_when_not_a_rails_controller
+    app = ->(_env) { [200, {}, ["OK"]] }
+    middleware = LogNorth::Middleware.new(app)
+
+    middleware.call({ "REQUEST_METHOD" => "GET", "PATH_INFO" => "/" })
+
+    ctx = LogNorth::Client.instance_variable_get(:@buffer).first[:context]
+    refute ctx.key?(:controller)
+    refute ctx.key?(:action)
+  end
 end
