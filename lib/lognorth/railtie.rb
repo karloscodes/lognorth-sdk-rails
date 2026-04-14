@@ -8,7 +8,10 @@ module LogNorth
     config.lognorth.middleware = true
     config.lognorth.error_subscriber = true
     config.lognorth.active_job = true
-    config.lognorth.ignored_paths = [] # Paths to skip logging (e.g., ["/healthz", "/_health"])
+    # Rails 7.1+ auto-generates /up as a health-check endpoint; kamal-proxy
+    # and most load balancers hit it constantly and it would otherwise swamp
+    # the log feed. Set to [] to disable or pass your own list to replace.
+    config.lognorth.ignored_paths = ["/up"]
 
     initializer "lognorth.middleware" do |app|
       if LogNorth::Railtie.lognorth_enabled?(app) && app.config.lognorth.middleware

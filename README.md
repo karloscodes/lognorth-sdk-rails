@@ -38,7 +38,17 @@ LogNorth.config(
 config.lognorth.enabled = Rails.env.production?
 config.lognorth.middleware = true        # Log HTTP requests
 config.lognorth.error_subscriber = true  # Report exceptions (Rails 7+)
+
+# Paths to skip from request logging. Defaults to Rails' built-in
+# health-check endpoint; set to [] to log everything or replace with
+# your own list.
+config.lognorth.ignored_paths = ["/up", "/healthz"]
 ```
+
+Default: `["/up"]` (Rails 7.1's auto-generated health check — swamped by
+kamal-proxy and load-balancer pings otherwise). Setting `ignored_paths =
+[]` disables ignoring entirely. Matching is exact path or `path/…`
+prefix, so `/up` also covers `/up/detail`.
 
 ## Usage
 
