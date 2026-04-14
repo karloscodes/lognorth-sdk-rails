@@ -7,8 +7,8 @@ require_relative "lognorth/railtie" if defined?(Rails::Railtie)
 
 module LogNorth
   class << self
-    def config(url, key)
-      Client.config(url, key)
+    def config(url, key, environment: nil)
+      Client.config(url, key, environment: environment)
     end
 
     def log(message, context = {})

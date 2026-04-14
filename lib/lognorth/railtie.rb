@@ -3,55 +3,58 @@
 module LogNorth
   class Railtie < Rails::Railtie
     config.lognorth = ActiveSupport::OrderedOptions.new
-    config.lognorth.enabled = true
+    # nil = auto (production only). Set true/false to override.
+    config.lognorth.enabled = nil
     config.lognorth.middleware = true
     config.lognorth.error_subscriber = true
     config.lognorth.active_job = true
-    config.lognorth.ignored_paths = []  # Paths to skip logging (e.g., ["/healthz", "/_health"])
+    config.lognorth.ignored_paths = [] # Paths to skip logging (e.g., ["/healthz", "/_health"])
 
     initializer "lognorth.middleware" do |app|
-      if app.config.lognorth.enabled && app.config.lognorth.middleware
+      if lognorth_enabled?(app) && app.config.lognorth.middleware
         app.middleware.use LogNorth::Middleware
       end
     end
 
     config.after_initialize do |app|
-      $stdout.puts "[LogNorth] after_initialize running"
-      next unless app.config.lognorth.enabled
+      next unless lognorth_enabled?(app)
 
-      url = app.config.lognorth.url
-      key = app.config.lognorth.api_key
+      url = app.config.lognorth.url || dig_credential(app, :url)
+      key = app.config.lognorth.api_key || dig_credential(app, :api_key)
 
-      unless url
-        begin
-          url = app.credentials.dig(:lognorth, :url)
-        rescue StandardError
-          nil
-        end
+      unless url && key
+        Rails.logger.warn("[LogNorth] enabled but credentials missing — set Rails credentials lognorth.url/api_key or config.lognorth.{url,api_key}")
+        next
       end
 
-      unless key
-        begin
-          key = app.credentials.dig(:lognorth, :api_key)
-        rescue StandardError
-          nil
-        end
+      LogNorth.config(url, key, environment: Rails.env.to_s)
+      LogNorth::Client.debug = false # Rails.env.local? made tests/dev noisy
+
+      if app.config.lognorth.error_subscriber && Rails.version >= "7.0"
+        Rails.error.subscribe(LogNorth::ErrorSubscriber.new)
       end
 
-      if url && key
-        LogNorth.config(url, key)
-        LogNorth::Client.debug = Rails.env.local?
+      if app.config.lognorth.active_job && defined?(ActiveJob)
+        require "lognorth/active_job_subscriber"
+        LogNorth::ActiveJobSubscriber.attach
+      end
+    end
 
-        if app.config.lognorth.error_subscriber && Rails.version >= "7.0"
-          Rails.error.subscribe(LogNorth::ErrorSubscriber.new)
-        end
+    class << self
+      # Default off in development and test only. Production, staging, preview,
+      # qa, and any other custom env opt in automatically. Set
+      # config.lognorth.enabled = true/false to override.
+      def lognorth_enabled?(app)
+        explicit = app.config.lognorth.enabled
+        return explicit unless explicit.nil?
 
-        if app.config.lognorth.active_job && defined?(ActiveJob)
-          require "lognorth/active_job_subscriber"
-          LogNorth::ActiveJobSubscriber.attach
-        end
-      else
-        $stdout.puts "[LogNorth] not configured: url=#{url.inspect} api_key=#{key ? '[set]' : 'nil'}"
+        !(Rails.env.development? || Rails.env.test?)
+      end
+
+      def dig_credential(app, key)
+        app.credentials.dig(:lognorth, key)
+      rescue StandardError
+        nil
       end
     end
   end

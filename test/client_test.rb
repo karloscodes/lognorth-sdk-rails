@@ -83,4 +83,41 @@ class ClientTest < Minitest::Test
     assert backoff
     assert backoff > Time.now
   end
+
+  def test_environment_is_stamped_on_log_events
+    LogNorth.config("https://lognorth.test", "test-key", environment: "staging")
+    LogNorth::Client.instance_variable_set(:@buffer, [])
+
+    LogNorth.log("hello", { user_id: 1 })
+
+    buffer = LogNorth::Client.instance_variable_get(:@buffer)
+
+    assert_equal "staging", buffer.first[:context][:environment]
+    assert_equal 1, buffer.first[:context][:user_id]
+  end
+
+  def test_environment_is_stamped_on_error_events
+    LogNorth.config("https://lognorth.test", "test-key", environment: "staging")
+    captured = nil
+    stub_request(:post, "https://lognorth.test/api/v1/events/batch")
+      .with { |req| captured = JSON.parse(req.body); true }
+      .to_return(status: 200)
+
+    error = StandardError.new("boom")
+    error.set_backtrace(["app.rb:1:in `foo'"])
+    LogNorth.error("crash", error)
+    sleep 0.1
+
+    assert_equal "staging", captured.dig("events", 0, "context", "environment")
+  end
+
+  def test_calls_are_no_op_when_not_configured
+    LogNorth::Client.instance_variable_set(:@endpoint, nil)
+    LogNorth::Client.instance_variable_set(:@api_key, nil)
+    LogNorth::Client.instance_variable_set(:@buffer, [])
+
+    LogNorth.log("dropped")
+
+    assert_empty LogNorth::Client.instance_variable_get(:@buffer)
+  end
 end

@@ -14,16 +14,22 @@ module LogNorth
     @backoff_until = nil
     @endpoint = nil
     @api_key = nil
+    @environment = nil
 
     class << self
       attr_accessor :debug
 
-      def config(url, key)
+      def config(url, key, environment: nil)
         @mutex.synchronize do
           @endpoint = url.chomp("/")
           @api_key = key
+          @environment = environment
         end
-        log_debug("configured with url=#{url}")
+        log_debug("configured with url=#{url} env=#{environment.inspect}")
+      end
+
+      def configured?
+        @mutex.synchronize { !@endpoint.nil? && !@api_key.nil? }
       end
 
       def log(message, context = {})
@@ -43,11 +49,13 @@ module LogNorth
       end
 
       def send_event(message, context = {}, trace_id: nil, duration_ms: nil, timestamp: nil)
+        return unless configured?
+
         trace_id ||= current_trace_id
         event = {
           message: message,
           timestamp: (timestamp || Time.now).utc.iso8601(3),
-          context: context
+          context: stamp_environment(context)
         }
         event[:trace_id] = trace_id if trace_id
         event[:duration_ms] = duration_ms if duration_ms
@@ -64,6 +72,8 @@ module LogNorth
       end
 
       def send_error_event(message, exception, context = {}, trace_id: nil, duration_ms: nil, timestamp: nil)
+        return unless configured?
+
         trace_id ||= current_trace_id
         error_file = ""
         error_line = 0
@@ -79,14 +89,14 @@ module LogNorth
         event = {
           message: message,
           timestamp: (timestamp || Time.now).utc.iso8601(3),
-          context: context.merge(
+          context: stamp_environment(context.merge(
             error: exception.message,
             error_class: exception.class.name,
             error_file: error_file,
             error_line: error_line,
             error_caller: error_caller,
             stack_trace: exception.backtrace&.first(20)&.join("\n")
-          )
+          ))
         }
         event[:trace_id] = trace_id if trace_id
         event[:duration_ms] = duration_ms if duration_ms
@@ -108,6 +118,16 @@ module LogNorth
       end
 
       private
+
+      # Adds context.environment when the client was configured with one.
+      # The server displays this on every event/issue/trace so users can tell
+      # which deployment a log came from.
+      def stamp_environment(context)
+        env = @mutex.synchronize { @environment }
+        return context unless env
+
+        context.merge(environment: env)
+      end
 
       def schedule_flush
         return if @timer
