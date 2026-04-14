@@ -11,16 +11,16 @@ module LogNorth
     config.lognorth.ignored_paths = [] # Paths to skip logging (e.g., ["/healthz", "/_health"])
 
     initializer "lognorth.middleware" do |app|
-      if lognorth_enabled?(app) && app.config.lognorth.middleware
+      if LogNorth::Railtie.lognorth_enabled?(app) && app.config.lognorth.middleware
         app.middleware.use LogNorth::Middleware
       end
     end
 
     config.after_initialize do |app|
-      next unless lognorth_enabled?(app)
+      next unless LogNorth::Railtie.lognorth_enabled?(app)
 
-      url = app.config.lognorth.url || dig_credential(app, :url)
-      key = app.config.lognorth.api_key || dig_credential(app, :api_key)
+      url = app.config.lognorth.url || LogNorth::Railtie.dig_credential(app, :url)
+      key = app.config.lognorth.api_key || LogNorth::Railtie.dig_credential(app, :api_key)
 
       unless url && key
         Rails.logger.warn("[LogNorth] enabled but credentials missing — set Rails credentials lognorth.url/api_key or config.lognorth.{url,api_key}")
