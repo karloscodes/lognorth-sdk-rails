@@ -22,7 +22,7 @@ class ErrorSubscriberTest < Minitest::Test
       source: "application"
     )
 
-    sleep 0.1 # wait for thread
+    wait_for_request(:post, "https://lognorth.test/api/v1/events/batch")
 
     assert_requested(:post, "https://lognorth.test/api/v1/events/batch")
   end

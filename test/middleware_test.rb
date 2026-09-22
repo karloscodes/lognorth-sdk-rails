@@ -85,7 +85,7 @@ class MiddlewareTest < Minitest::Test
 
     assert_raises(StandardError) { middleware.call(env) }
 
-    sleep 0.1 # wait for error thread
+    wait_for_request(:post, "https://lognorth.test/api/v1/events/batch")
   end
 
   def test_populates_controller_and_action_from_action_controller_instance

@@ -53,7 +53,7 @@ class ClientTest < Minitest::Test
     error.set_backtrace(["line1", "line2"])
 
     LogNorth.error("failure", error, { request_id: "abc" })
-    sleep 0.1 # wait for thread
+    wait_for_request(:post, "https://lognorth.test/api/v1/events/batch")
 
     assert_requested(:post, "https://lognorth.test/api/v1/events/batch")
   end
@@ -106,7 +106,7 @@ class ClientTest < Minitest::Test
     error = StandardError.new("boom")
     error.set_backtrace(["app.rb:1:in `foo'"])
     LogNorth.error("crash", error)
-    sleep 0.1
+    wait_for_request(:post, "https://lognorth.test/api/v1/events/batch")
 
     assert_equal "staging", captured.dig("events", 0, "context", "environment")
   end
