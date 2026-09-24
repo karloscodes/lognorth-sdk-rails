@@ -2,3 +2,7 @@
 Gemfile.lock
 .bundle/
 pkg/
+
+# The example app's runtime files
+example/tmp/*
+!example/tmp/.keep
