@@ -50,6 +50,19 @@ module LogNorth
       [status, headers, response]
     rescue StandardError => e
       duration_ms = ((Process.clock_gettime(Process::CLOCK_MONOTONIC) - start) * 1000).round
+      if LogNorth.client_error?(e)
+        # Rails turns this into a 4xx further out. Log the request with that
+        # status, like any other request, instead of an error.
+        status = LogNorth.response_status_for(e)
+        context = { method: env["REQUEST_METHOD"], path: env["PATH_INFO"], status: status }
+        merge_route_info!(context, env)
+        LogNorth::Client.send_event(
+          "#{env['REQUEST_METHOD']} #{env['PATH_INFO']} → #{status}", context,
+          trace_id: trace_id, duration_ms: duration_ms, timestamp: start_time
+        )
+        LogNorth::Client.current_trace_id = nil
+        raise
+      end
       LogNorth::Client.send_error_event(
         "Request failed: #{env['REQUEST_METHOD']} #{env['PATH_INFO']}", e,
         { method: env["REQUEST_METHOD"], path: env["PATH_INFO"] },

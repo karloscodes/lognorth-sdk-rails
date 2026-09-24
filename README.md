@@ -35,7 +35,7 @@ LogNorth.config(
 
 ```ruby
 # config/application.rb
-config.lognorth.enabled = Rails.env.production?
+config.lognorth.enabled = true           # Default: on everywhere except development and test
 config.lognorth.middleware = true        # Log HTTP requests
 config.lognorth.error_subscriber = true  # Report exceptions (Rails 7+)
 
@@ -49,6 +49,20 @@ Default: `["/up"]` (Rails 7.1's auto-generated health check — swamped by
 kamal-proxy and load-balancer pings otherwise). Setting `ignored_paths =
 []` disables ignoring entirely. Matching is exact path or `path/…`
 prefix, so `/up` also covers `/up/detail`.
+
+### Client errors are not errors
+
+An exception that Rails answers with a 4xx is the request's fault, not the app's:
+`ActiveRecord::RecordNotFound` (404), `ActionController::InvalidAuthenticityToken`
+(422), `ActionController::ParameterMissing` (400). The SDK logs the request with
+that status and does not report an error, so these never become issues or alerts.
+
+Rails decides the status from `config.action_dispatch.rescue_responses`, and the SDK
+asks the same map. To report one of them as an error, map it to a 5xx:
+
+```ruby
+config.action_dispatch.rescue_responses["ActiveRecord::RecordNotFound"] = :internal_server_error
+```
 
 ## Usage
 
