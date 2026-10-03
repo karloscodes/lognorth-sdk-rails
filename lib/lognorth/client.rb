@@ -2,6 +2,7 @@
 
 require "net/http"
 require "json"
+require "time"
 require "uri"
 
 module LogNorth
