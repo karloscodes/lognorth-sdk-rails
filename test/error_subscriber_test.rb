@@ -3,12 +3,6 @@
 require_relative "test_helper"
 
 class ErrorSubscriberTest < Minitest::Test
-  def setup
-    LogNorth.config("https://lognorth.test", "test-key")
-    stub_request(:post, "https://lognorth.test/api/v1/events/batch")
-      .to_return(status: 200)
-  end
-
   def test_report_sends_error
     subscriber = LogNorth::ErrorSubscriber.new
     error = RuntimeError.new("test error")
@@ -22,8 +16,8 @@ class ErrorSubscriberTest < Minitest::Test
       source: "application"
     )
 
-    wait_for_request(:post, "https://lognorth.test/api/v1/events/batch")
+    wait_until { @server.events.any? }
 
-    assert_requested(:post, "https://lognorth.test/api/v1/events/batch")
+    assert_equal "UsersController", @server.events.first.dig("context", "controller")
   end
 end

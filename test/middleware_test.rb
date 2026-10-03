@@ -3,11 +3,6 @@
 require_relative "test_helper"
 
 class MiddlewareTest < Minitest::Test
-  def setup
-    LogNorth.config("https://lognorth.test", "test-key")
-    LogNorth::Client.instance_variable_set(:@buffer, [])
-  end
-
   def test_logs_successful_request
     app = ->(env) { [200, {}, ["OK"]] }
     middleware = LogNorth::Middleware.new(app)
@@ -20,8 +15,6 @@ class MiddlewareTest < Minitest::Test
     status, _headers, _body = middleware.call(env)
 
     assert_equal 200, status
-
-    buffer = LogNorth::Client.instance_variable_get(:@buffer)
 
     assert_equal 1, buffer.size
     assert_equal "GET /users → 200", buffer.first[:message]
@@ -46,7 +39,6 @@ class MiddlewareTest < Minitest::Test
 
     assert_equal 404, status
 
-    buffer = LogNorth::Client.instance_variable_get(:@buffer)
     assert_equal 0, buffer.size
   end
 
@@ -66,7 +58,6 @@ class MiddlewareTest < Minitest::Test
 
     assert_equal 404, status
 
-    buffer = LogNorth::Client.instance_variable_get(:@buffer)
     assert_equal 1, buffer.size
     assert_equal "GET /users/999 → 404", buffer.first[:message]
   end
@@ -75,9 +66,6 @@ class MiddlewareTest < Minitest::Test
     app = ->(_env) { raise StandardError, "boom" }
     middleware = LogNorth::Middleware.new(app)
 
-    stub_request(:post, "https://lognorth.test/api/v1/events/batch")
-      .to_return(status: 200)
-
     env = {
       "REQUEST_METHOD" => "POST",
       "PATH_INFO" => "/orders"
@@ -85,7 +73,9 @@ class MiddlewareTest < Minitest::Test
 
     assert_raises(StandardError) { middleware.call(env) }
 
-    wait_for_request(:post, "https://lognorth.test/api/v1/events/batch")
+    wait_until { @server.events.any? }
+
+    assert_equal "Request failed: POST /orders", @server.messages.first
   end
 
   def test_populates_controller_and_action_from_action_controller_instance
@@ -102,7 +92,7 @@ class MiddlewareTest < Minitest::Test
 
     middleware.call({ "REQUEST_METHOD" => "GET", "PATH_INFO" => "/conversations" })
 
-    ctx = LogNorth::Client.instance_variable_get(:@buffer).first[:context]
+    ctx = buffer.first[:context]
     assert_equal "ConversationsController", ctx[:controller]
     assert_equal "index", ctx[:action]
   end
@@ -113,7 +103,7 @@ class MiddlewareTest < Minitest::Test
 
     middleware.call({ "REQUEST_METHOD" => "GET", "PATH_INFO" => "/" })
 
-    ctx = LogNorth::Client.instance_variable_get(:@buffer).first[:context]
+    ctx = buffer.first[:context]
     refute ctx.key?(:controller)
     refute ctx.key?(:action)
   end

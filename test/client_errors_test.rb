@@ -10,17 +10,6 @@ class WidgetNotFound < StandardError; end
 ActionDispatch::ExceptionWrapper.rescue_responses["WidgetNotFound"] = :not_found
 
 class ClientErrorsTest < Minitest::Test
-  BATCH = "https://lognorth.test/api/v1/events/batch"
-
-  def setup
-    LogNorth.config("https://lognorth.test", "test-key")
-    stub_request(:post, BATCH).to_return(status: 200)
-  end
-
-  def buffer
-    LogNorth::Client.instance_variable_get(:@buffer)
-  end
-
   def test_rails_decides_what_is_a_client_error
     assert LogNorth.client_error?(ActionController::InvalidAuthenticityToken.new)
     assert LogNorth.client_error?(WidgetNotFound.new)
@@ -29,16 +18,18 @@ class ClientErrorsTest < Minitest::Test
 
   def test_error_subscriber_skips_a_404
     LogNorth::ErrorSubscriber.new.report(WidgetNotFound.new("no widget 19"), handled: false, severity: :error)
-    sleep 0.2 # an error would be sent on a background thread
+    sleep 0.2 # an error would be sent at once
 
-    assert_not_requested(:post, BATCH)
+    assert_empty @server.requests
+    assert_empty buffer
   end
 
   def test_error_subscriber_skips_a_422
     LogNorth::ErrorSubscriber.new.report(ActionController::InvalidAuthenticityToken.new, handled: false, severity: :error)
     sleep 0.2
 
-    assert_not_requested(:post, BATCH)
+    assert_empty @server.requests
+    assert_empty buffer
   end
 
   def test_error_subscriber_reports_a_500
@@ -46,9 +37,9 @@ class ClientErrorsTest < Minitest::Test
     error.set_backtrace(["app/models/order.rb:10:in `charge'"])
 
     LogNorth::ErrorSubscriber.new.report(error, handled: false, severity: :error)
-    wait_for_request(:post, BATCH)
+    wait_until { @server.events.any? }
 
-    assert_requested(:post, BATCH)
+    assert_equal 1, @server.events.size
   end
 
   def test_middleware_logs_a_client_error_as_a_request_with_its_status
@@ -56,13 +47,10 @@ class ClientErrorsTest < Minitest::Test
     env = { "REQUEST_METHOD" => "POST", "PATH_INFO" => "/orders" }
 
     assert_raises(ActionController::InvalidAuthenticityToken) { LogNorth::Middleware.new(app).call(env) }
-    sleep 0.2
-
     assert_equal 1, buffer.size
     assert_equal "POST /orders → 422", buffer.first[:message]
     assert_equal 422, buffer.first[:context][:status]
     refute buffer.first[:context].key?(:error)
-    assert_not_requested(:post, BATCH)
   end
 
   def test_middleware_still_reports_a_500_as_an_error
@@ -70,8 +58,8 @@ class ClientErrorsTest < Minitest::Test
     env = { "REQUEST_METHOD" => "POST", "PATH_INFO" => "/orders" }
 
     assert_raises(RuntimeError) { LogNorth::Middleware.new(app).call(env) }
-    wait_for_request(:post, BATCH)
+    wait_until { @server.events.any? }
 
-    assert_requested(:post, BATCH)
+    assert_equal 1, @server.events.size
   end
 end
