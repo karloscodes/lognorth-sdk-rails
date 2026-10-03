@@ -67,10 +67,10 @@ config.action_dispatch.rescue_responses["ActiveRecord::RecordNotFound"] = :inter
 ## Usage
 
 ```ruby
-# Log messages (batched, sent every 5s or 10 events)
+# Log messages (batched, sent after 5s or at 10 events)
 LogNorth.log("User signed up", { user_id: 123 })
 
-# Report errors (sent immediately)
+# Report errors (sent at once)
 begin
   risky_operation
 rescue => e
@@ -81,6 +81,29 @@ end
 # Manual flush (called automatically at exit)
 LogNorth.flush
 ```
+
+## Batching and delivery
+
+Logging calls never block and never raise. They add the event to a queue in memory.
+One background thread sends the queue, one request at a time.
+
+- The thread sends when the queue holds 10 events, when you report an error, or 5 seconds after the first event.
+- A request holds at most 500 events and 1 MB of JSON.
+- The queue holds at most 10,000 events or 10 MB of JSON.
+- The SDK trims an event to at most 64 KB before it enters the queue. It marks a trimmed event with `context.truncated = true`.
+
+When a send fails, the SDK keeps the events and tries again later. Events keep their order.
+
+- On a network error, a timeout, or a 5xx, it waits 1 second, then 2, then 4, up to 60.
+- On a 429 or 503, it waits as long as the `Retry-After` header says.
+- On a 401, 403, or 404, it waits 60 seconds, then up to 5 minutes. It writes one line to stderr, so you can fix the url or the key.
+- On a 413 or other 4xx, it splits the batch in two and sends again. It drops a single event the server still refuses.
+
+When the queue is full, the SDK drops the oldest event that is not an error. It keeps errors longest.
+After the next successful send, it logs `LogNorth client dropped N events` with the counts.
+
+At exit (including SIGTERM and SIGINT), the SDK sends what is left in the queue for up to 5 seconds.
+It writes the number of events it could not send to stderr.
 
 ## Rack (without Rails)
 
