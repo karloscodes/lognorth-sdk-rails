@@ -73,7 +73,7 @@ class TestServer
     events = JSON.parse(body)["events"]
     status, extra = @handler.call(events)
     @lock.synchronize do
-      @requests << { status: status, events: events, bytes: body.bytesize, headers: headers }
+      @requests << { status: status, events: events, bytes: body.bytesize, headers: headers, at: Time.now }
     end
 
     reply = +"HTTP/1.1 #{status} X\r\nContent-Length: 2\r\nConnection: close\r\n"

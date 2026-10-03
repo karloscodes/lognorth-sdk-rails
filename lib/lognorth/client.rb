@@ -342,8 +342,8 @@ module LogNorth
           succeeded
           true
         when 429, 503
-          backoff = next_backoff
-          retry_later(batch, "server answered #{code}", retry_after || backoff)
+          # The server said when; the backoff stays for failures that do not say.
+          retry_later(batch, "server answered #{code}", retry_after || next_backoff)
         when 408, 500..599
           retry_later(batch, "server answered #{code}", wait_with_jitter)
         when 401, 403, 404
@@ -395,7 +395,9 @@ module LogNorth
 
       # Call with @mutex held. Returns false: the next send must wait.
       def retry_later(batch, reason, wait, state: :retrying)
-        put_back(batch)
+        # The next send takes a full batch again; a refused batch splits again.
+        @batch_sizes.clear
+        put_back(batch, [])
         @retry_at = monotonic + wait
         warn("[LogNorth] #{reason}; keeping #{@buffer.size} event(s) and retrying") if @failing != state
         @failing = state

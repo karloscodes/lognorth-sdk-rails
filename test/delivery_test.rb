@@ -41,11 +41,27 @@ class DeliveryTest < Minitest::Test
     assert_equal ["boom"], @server.messages
   end
 
+  def test_retry_after_does_not_grow_the_backoff_and_the_retry_takes_a_full_batch
+    answers = [[503, { "Retry-After" => "1" }], [503, { "Retry-After" => "1" }], [500, {}]]
+    @server.handler = ->(_events) { answers.shift || [201, {}] }
+
+    log_events(10)
+    wait_until { @server.requests.size == 1 }
+    log_events(30, "later")
+    wait_until(timeout: 5) { @server.events.size == 40 }
+
+    requests = @server.requests
+    assert_equal [10, 40, 40, 40], requests.map { |r| r[:events].size }
+    gap = requests[3][:at] - requests[2][:at]
+    assert_operator gap, :<, 0.12, "the wait after the 500 is the first backoff, not one grown by Retry-After"
+  end
+
   def test_500_is_retried_with_backoff
     @server.answer(500, times: 3)
 
     log_events(10)
-    wait_until { @server.events.size == 10 }
+    # The server records a batch before it answers, so wait for the client to read the 201 too.
+    wait_until { @server.events.size == 10 && @stderr.string.include?("delivery recovered") }
 
     assert_equal [500, 500, 500, 201], @server.requests.map { |r| r[:status] }
     assert_equal 10, @server.events.size
