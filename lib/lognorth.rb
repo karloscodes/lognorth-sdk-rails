@@ -41,4 +41,5 @@ module LogNorth
   end
 end
 
-at_exit { LogNorth.flush }
+# Ruby runs at_exit on SIGTERM and SIGINT too, unless the app traps them.
+at_exit { LogNorth::Client.shutdown }
