@@ -94,7 +94,7 @@ end
 
 The request event and its errors carry the user, so LogNorth shows how many users an issue hit.
 
-Errors also carry the release. The gem reads `KAMAL_VERSION`, `LOGNORTH_RELEASE`, `GIT_SHA`, or the commit variable of Render, Heroku, Railway, Vercel, or Coolify. A failed request (5xx) also carries its user agent, so you can tell a bot from a browser.
+Errors also carry the release. The gem reads `KAMAL_VERSION`, `LOGNORTH_RELEASE`, `GIT_SHA`, or the commit variable of Render, Heroku, Railway, Vercel, or Coolify. When the release is set, the gem logs `Release <version> started` once at boot. LogNorth marks each release's first start on its charts. A failed request (5xx) also carries its user agent, so you can tell a bot from a browser.
 
 ## Batching and delivery
 

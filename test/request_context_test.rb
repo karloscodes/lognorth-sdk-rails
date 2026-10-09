@@ -63,7 +63,8 @@ class RequestContextTest < Minitest::Test
     LogNorth.error("charge failed", StandardError.new("card declined"))
 
     LogNorth.flush
-    log, error = @server.events
+    start, log, error = @server.events
+    assert_equal "Release a1b2c3d started", start["message"]
     assert_nil log["context"]["release"]
     assert_equal "a1b2c3d", error["context"]["release"]
   end
@@ -74,9 +75,18 @@ class RequestContextTest < Minitest::Test
 
     LogNorth.error("charge failed", StandardError.new("card declined"))
 
-    wait_until { @server.events.any? }
-    assert_equal "f00ba44", @server.events.first["context"]["release"]
+    wait_until { @server.events.size == 2 }
+    assert_equal "f00ba44", @server.events.last["context"]["release"]
   ensure
     ENV.delete("KAMAL_VERSION")
+  end
+
+  def test_the_client_says_once_that_the_release_started
+    LogNorth.config(@server.url, "test-key", release: "c0ffee1")
+    LogNorth.config(@server.url, "test-key", release: "c0ffee1")
+
+    LogNorth.flush
+
+    assert_equal ["Release c0ffee1 started"], @server.messages
   end
 end

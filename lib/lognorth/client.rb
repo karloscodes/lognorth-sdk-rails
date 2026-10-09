@@ -45,6 +45,7 @@ module LogNorth
     @api_key = nil
     @environment = nil
     @release = nil
+    @announced = nil # the release this process last said it started
 
     # Wait times in seconds. Tests set them lower.
     @flush_interval = 5
@@ -67,6 +68,7 @@ module LogNorth
           @release = release || release_from_env
         end
         log_debug("configured with url=#{url} env=#{environment.inspect}")
+        announce_release
       end
 
       def configured?
@@ -190,6 +192,18 @@ module LogNorth
         return context unless env
 
         context.merge(environment: env)
+      end
+
+      # Logs "Release <version> started" once per release, when the client is
+      # configured. LogNorth takes the first start of a release as its deploy
+      # time and marks it on its charts.
+      def announce_release
+        release = @mutex.synchronize do
+          next if @release.nil? || @release == @announced
+
+          @announced = @release
+        end
+        send_event("Release #{release} started", { release: release }) if release
       end
 
       def stamp_user(context)

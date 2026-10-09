@@ -121,7 +121,7 @@ class Minitest::Test
       client.instance_variable_get(:@mutex).synchronize do
         {
           buffer: [], bytes: 0, batch_sizes: [], dropped: 0, dropped_errors: 0, first_at: nil, urgent: false,
-          retry_at: nil, failing: nil, environment: nil,
+          retry_at: nil, failing: nil, environment: nil, release: nil, announced: nil,
           backoff: FAST[:first_backoff], config_backoff: FAST[:first_config_backoff]
         }.merge(FAST).each { |name, value| client.instance_variable_set(:"@#{name}", value) }
       end
