@@ -26,7 +26,7 @@ module LogNorth
 
       # Don't track requests that didn't match any route (scanner noise)
       if status == 404 && !env["action_controller.instance"]
-        LogNorth::Client.current_trace_id = nil
+        LogNorth::Client.end_request
         return [status, headers, response]
       end
 
@@ -35,6 +35,7 @@ module LogNorth
 
       context = { method: env["REQUEST_METHOD"], path: env["PATH_INFO"], status: status }
       merge_route_info!(context, env)
+      merge_user_agent!(context, env, status)
 
       LogNorth::Client.send_event(
         "#{env['REQUEST_METHOD']} #{env['PATH_INFO']} → #{status}",
@@ -46,7 +47,7 @@ module LogNorth
 
       LogNorth.flush if status >= 500
 
-      LogNorth::Client.current_trace_id = nil
+      LogNorth::Client.end_request
       [status, headers, response]
     rescue StandardError => e
       duration_ms = ((Process.clock_gettime(Process::CLOCK_MONOTONIC) - start) * 1000).round
@@ -60,17 +61,17 @@ module LogNorth
           "#{env['REQUEST_METHOD']} #{env['PATH_INFO']} → #{status}", context,
           trace_id: trace_id, duration_ms: duration_ms, timestamp: start_time
         )
-        LogNorth::Client.current_trace_id = nil
+        LogNorth::Client.end_request
         raise
       end
       LogNorth::Client.send_error_event(
         "Request failed: #{env['REQUEST_METHOD']} #{env['PATH_INFO']}", e,
-        { method: env["REQUEST_METHOD"], path: env["PATH_INFO"] },
+        merge_user_agent!({ method: env["REQUEST_METHOD"], path: env["PATH_INFO"] }, env, 500),
         trace_id: trace_id,
         duration_ms: duration_ms,
         timestamp: start_time
       )
-      LogNorth::Client.current_trace_id = nil
+      LogNorth::Client.end_request
       raise
     end
 
@@ -81,6 +82,14 @@ module LogNorth
       return false if ignored_paths.nil? || ignored_paths.empty?
 
       ignored_paths.any? { |p| path == p || path.start_with?("#{p}/") }
+    end
+
+    # The user agent tells a bot from a browser on a failed request. Only
+    # failed ones carry it, to keep every other event small.
+    def merge_user_agent!(context, env, status)
+      agent = env["HTTP_USER_AGENT"].to_s
+      context[:user_agent] = agent if status.to_i >= 500 && !agent.empty?
+      context
     end
 
     # Rails populates action_controller.instance after dispatch so the

@@ -82,6 +82,20 @@ end
 LogNorth.flush
 ```
 
+### Who hit the error, and in which release
+
+LogNorth reads `Current.user` when your app defines it, as the Rails authentication generator does. Otherwise, name the user yourself. Use an ID, not an email:
+
+```ruby
+class ApplicationController < ActionController::Base
+  before_action { LogNorth.user = current_user&.id }
+end
+```
+
+The request event and its errors carry the user, so LogNorth shows how many users an issue hit.
+
+Errors also carry the release. The gem reads `KAMAL_VERSION`, `LOGNORTH_RELEASE`, `GIT_SHA`, or the commit variable of Render, Heroku, Railway, Vercel, or Coolify. A failed request (5xx) also carries its user agent, so you can tell a bot from a browser.
+
 ## Batching and delivery
 
 Logging calls never block and never raise. They add the event to a queue in memory.

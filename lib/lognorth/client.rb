@@ -15,7 +15,12 @@ module LogNorth
   MAX_STACK_TRACE_BYTES = 16 * 1024
   MAX_STRING_BYTES = 8 * 1024
   # The context keys an event keeps when it is still too big after trimming.
-  ESSENTIAL_KEYS = %w[error error_class error_file error_line method path status environment].freeze
+  ESSENTIAL_KEYS = %w[error error_class error_file error_line method path status environment release user].freeze
+  # Where deploy tools put the version that runs. The first one set wins.
+  RELEASE_ENV = %w[
+    LOGNORTH_RELEASE GIT_SHA GIT_COMMIT SOURCE_COMMIT KAMAL_VERSION
+    RENDER_GIT_COMMIT HEROKU_SLUG_COMMIT SOURCE_VERSION RAILWAY_GIT_COMMIT_SHA VERCEL_GIT_COMMIT_SHA
+  ].freeze
 
   module Client
     # An event in the queue, with its JSON size and whether it is an error.
@@ -39,6 +44,7 @@ module LogNorth
     @endpoint = nil
     @api_key = nil
     @environment = nil
+    @release = nil
 
     # Wait times in seconds. Tests set them lower.
     @flush_interval = 5
@@ -53,11 +59,12 @@ module LogNorth
     class << self
       attr_accessor :debug
 
-      def config(url, key, environment: nil)
+      def config(url, key, environment: nil, release: nil)
         @mutex.synchronize do
           @endpoint = url.chomp("/")
           @api_key = key
           @environment = environment
+          @release = release || release_from_env
         end
         log_debug("configured with url=#{url} env=#{environment.inspect}")
       end
@@ -82,6 +89,22 @@ module LogNorth
         Thread.current[:lognorth_trace_id] = id
       end
 
+      # The user of the request on this thread: the one set with LogNorth.user=,
+      # or else Current.user, which the Rails authentication generator defines.
+      def current_user
+        Thread.current[:lognorth_user] || user_from_current_attributes
+      end
+
+      def current_user=(id)
+        Thread.current[:lognorth_user] = id&.to_s
+      end
+
+      # Forgets the trace ID and the user when a request ends.
+      def end_request
+        Thread.current[:lognorth_trace_id] = nil
+        Thread.current[:lognorth_user] = nil
+      end
+
       def send_event(message, context = {}, trace_id: nil, duration_ms: nil, timestamp: nil)
         return unless configured?
 
@@ -89,7 +112,7 @@ module LogNorth
         event = {
           message: message,
           timestamp: (timestamp || Time.now).utc.iso8601(3),
-          context: stamp_environment(context)
+          context: stamp_user(stamp_environment(context))
         }
         event[:trace_id] = trace_id if trace_id
         event[:duration_ms] = duration_ms if duration_ms
@@ -115,14 +138,14 @@ module LogNorth
         event = {
           message: message,
           timestamp: (timestamp || Time.now).utc.iso8601(3),
-          context: stamp_environment(context.merge(
+          context: stamp_user(stamp_environment(context.merge(
             error: exception.message,
             error_class: exception.class.name,
             error_file: error_file,
             error_line: error_line,
             error_caller: error_caller,
             stack_trace: exception.backtrace&.first(20)&.join("\n")
-          ))
+          )))
         }
         event[:trace_id] = trace_id if trace_id
         event[:duration_ms] = duration_ms if duration_ms
@@ -169,8 +192,36 @@ module LogNorth
         context.merge(environment: env)
       end
 
+      def stamp_user(context)
+        user = current_user
+        return context if user.nil? || fetch(context, :user)
+
+        context.merge(user: user)
+      end
+
+      def user_from_current_attributes
+        return unless defined?(::Current) && ::Current.respond_to?(:user)
+
+        ::Current.user&.id&.to_s
+      rescue StandardError
+        nil
+      end
+
+      # Errors carry the release: that is where it answers which deploy broke
+      # something. Other events stay small.
+      def stamp_release(event)
+        release = @mutex.synchronize { @release }
+        return event if release.nil? || !error_event?(event[:context]) || fetch(event[:context], :release)
+
+        event.merge(context: event[:context].merge(release: release))
+      end
+
+      def release_from_env
+        RELEASE_ENV.lazy.map { |k| ENV[k].to_s.strip }.find { |v| !v.empty? }
+      end
+
       def enqueue(event, urgent: false)
-        entry = new_entry(trim(event))
+        entry = new_entry(trim(stamp_release(event)))
         @mutex.synchronize do
           push(entry)
           @urgent = true if urgent

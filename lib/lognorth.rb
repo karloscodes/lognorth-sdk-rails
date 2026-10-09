@@ -7,8 +7,17 @@ require_relative "lognorth/railtie" if defined?(Rails::Railtie)
 
 module LogNorth
   class << self
-    def config(url, key, environment: nil)
-      Client.config(url, key, environment: environment)
+    def config(url, key, environment: nil, release: nil)
+      Client.config(url, key, environment: environment, release: release)
+    end
+
+    # Names the user of the current request: an ID, not an email. The request
+    # event and its errors carry it, so an issue shows how many users it hit.
+    # Without it, LogNorth reads Current.user when the app defines one.
+    #
+    #   before_action { LogNorth.user = current_user&.id }
+    def user=(id)
+      Client.current_user = id
     end
 
     def log(message, context = {})
