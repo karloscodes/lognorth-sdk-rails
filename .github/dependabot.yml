@@ -1,0 +1,45 @@
+# Monthly, grouped version updates, each a week old at least.
+# Security updates come as soon as an advisory is out, in the "security" group.
+# Security and patch updates merge by themselves when CI passes; minor and major
+# updates wait for a person: .github/workflows/merge-security-updates.yml.
+# A merge releases nothing: updates ship with the next release a person cuts.
+version: 2
+updates:
+  - package-ecosystem: "bundler"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    # A new version waits a week: a compromised release is usually pulled by then.
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 3
+    groups:
+      # Patch updates in their own group, so one minor bump does not hold them.
+      bundler-patch:
+        update-types: ["patch"]
+        patterns: ["*"]
+      bundler:
+        patterns: ["*"]
+      # merge-security-updates.yml knows a security update by this group name.
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    # A new version waits a week: a compromised release is usually pulled by then.
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 3
+    groups:
+      # Patch updates in their own group, so one minor bump does not hold them.
+      actions-patch:
+        update-types: ["patch"]
+        patterns: ["*"]
+      actions:
+        patterns: ["*"]
+      # merge-security-updates.yml knows a security update by this group name.
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
