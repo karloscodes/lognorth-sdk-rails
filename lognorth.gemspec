@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = "lognorth"
-  spec.version = "0.3.0.rc.2"
+  spec.version = "0.3.0"
   spec.authors = ["LogNorth"]
   spec.email = ["hello@lognorth.com"]
 
