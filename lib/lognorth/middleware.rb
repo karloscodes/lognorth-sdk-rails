@@ -9,7 +9,10 @@ module LogNorth
     end
 
     def call(env)
+      # A mounted engine or Rack app leaves PATH_INFO and SCRIPT_NAME as it
+      # saw them, so read both before the call.
       path = env["PATH_INFO"]
+      script_name = env["SCRIPT_NAME"].to_s
 
       # Skip ignored paths (health checks, metrics, etc.)
       if ignored_path?(path)
@@ -33,12 +36,12 @@ module LogNorth
       duration_ms = ((Process.clock_gettime(Process::CLOCK_MONOTONIC) - start) * 1000).round
       headers["X-Trace-ID"] = trace_id
 
-      context = { method: env["REQUEST_METHOD"], path: env["PATH_INFO"], status: status }
-      merge_route_info!(context, env)
+      context = { method: env["REQUEST_METHOD"], path: path, status: status }
+      merge_route_info!(context, env, script_name)
       merge_user_agent!(context, env, status)
 
       LogNorth::Client.send_event(
-        "#{env['REQUEST_METHOD']} #{env['PATH_INFO']} → #{status}",
+        "#{env['REQUEST_METHOD']} #{path} → #{status}",
         context,
         trace_id: trace_id,
         duration_ms: duration_ms,
@@ -55,18 +58,18 @@ module LogNorth
         # Rails turns this into a 4xx further out. Log the request with that
         # status, like any other request, instead of an error.
         status = LogNorth.response_status_for(e)
-        context = { method: env["REQUEST_METHOD"], path: env["PATH_INFO"], status: status }
-        merge_route_info!(context, env)
+        context = { method: env["REQUEST_METHOD"], path: path, status: status }
+        merge_route_info!(context, env, script_name)
         LogNorth::Client.send_event(
-          "#{env['REQUEST_METHOD']} #{env['PATH_INFO']} → #{status}", context,
+          "#{env['REQUEST_METHOD']} #{path} → #{status}", context,
           trace_id: trace_id, duration_ms: duration_ms, timestamp: start_time
         )
         LogNorth::Client.end_request
         raise
       end
       LogNorth::Client.send_error_event(
-        "Request failed: #{env['REQUEST_METHOD']} #{env['PATH_INFO']}", e,
-        merge_user_agent!({ method: env["REQUEST_METHOD"], path: env["PATH_INFO"] }, env, 500),
+        "Request failed: #{env['REQUEST_METHOD']} #{path}", e,
+        merge_user_agent!({ method: env["REQUEST_METHOD"], path: path }, env, 500),
         trace_id: trace_id,
         duration_ms: duration_ms,
         timestamp: start_time
@@ -93,9 +96,9 @@ module LogNorth
     end
 
     # Rails populates action_controller.instance after dispatch so the
-    # controller/action names — and the named route when available —
-    # can be pulled straight off the env.
-    def merge_route_info!(context, env)
+    # controller/action names — and the route — can be pulled straight off
+    # the env.
+    def merge_route_info!(context, env, script_name)
       controller = env["action_controller.instance"]
       return unless controller
 
@@ -103,6 +106,21 @@ module LogNorth
       action = controller.respond_to?(:action_name) ? controller.action_name : nil
       context[:controller] = klass if klass
       context[:action] = action if action
+      route = route_of(env, script_name)
+      context[:route] = route if route
+    end
+
+    # The route as `bin/rails routes` prints it (Rails 7.1+), without the
+    # optional format: "/users/:id". An engine's route is relative to its
+    # mount point, which Rails added to SCRIPT_NAME.
+    def route_of(env, script_name)
+      return unless defined?(ActionDispatch::Request) && ActionDispatch::Request.method_defined?(:route_uri_pattern)
+
+      pattern = ActionDispatch::Request.new(env).route_uri_pattern
+      return unless pattern
+
+      mount = env["SCRIPT_NAME"].to_s.delete_prefix(script_name)
+      mount + pattern.delete_suffix("(.:format)")
     end
   end
 end

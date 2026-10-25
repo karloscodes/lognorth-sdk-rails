@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "test_helper"
+require "action_dispatch"
 
 class MiddlewareTest < Minitest::Test
   def test_logs_successful_request
@@ -106,5 +107,58 @@ class MiddlewareTest < Minitest::Test
     ctx = buffer.first[:context]
     refute ctx.key?(:controller)
     refute ctx.key?(:action)
+  end
+
+  def test_sends_the_route_rails_matched
+    app = routes { get "/users/:id", to: CONTROLLER }
+
+    LogNorth::Middleware.new(app).call(Rack::MockRequest.env_for("/users/42"))
+
+    ctx = buffer.first[:context]
+    assert_equal "/users/42", ctx[:path]
+    assert_equal "/users/:id", ctx[:route]
+  end
+
+  def test_sends_the_full_path_and_route_of_a_mounted_engine
+    engine = routes { get "/posts/:id", to: CONTROLLER }
+    app = routes { mount engine => "/admin" }
+
+    LogNorth::Middleware.new(app).call(Rack::MockRequest.env_for("/admin/posts/7"))
+
+    ctx = buffer.first[:context]
+    assert_equal "GET /admin/posts/7 → 200", buffer.first[:message]
+    assert_equal "/admin/posts/7", ctx[:path]
+    assert_equal "/admin/posts/:id", ctx[:route]
+  end
+
+  def test_names_the_full_path_when_a_mounted_engine_fails
+    failing = ->(env) { env["action_controller.instance"] = Object.new; raise StandardError, "boom" }
+    engine = routes { get "/posts/:id", to: failing }
+    app = routes { mount engine => "/admin" }
+
+    assert_raises(StandardError) { LogNorth::Middleware.new(app).call(Rack::MockRequest.env_for("/admin/posts/7")) }
+
+    wait_until { @server.events.any? }
+    assert_equal "Request failed: GET /admin/posts/7", @server.messages.first
+  end
+
+  def test_sends_no_route_for_a_mounted_rack_app
+    rack_app = ->(_env) { [200, {}, ["OK"]] }
+    app = routes { mount rack_app => "/jobs" }
+
+    LogNorth::Middleware.new(app).call(Rack::MockRequest.env_for("/jobs/queues"))
+
+    ctx = buffer.first[:context]
+    assert_equal "/jobs/queues", ctx[:path]
+    refute ctx.key?(:route)
+  end
+
+  private
+
+  # A Rails controller sets action_controller.instance when it runs.
+  CONTROLLER = ->(env) { env["action_controller.instance"] = Object.new; [200, {}, ["OK"]] }
+
+  def routes(&draw)
+    ActionDispatch::Routing::RouteSet.new.tap { |set| set.draw(&draw) }
   end
 end

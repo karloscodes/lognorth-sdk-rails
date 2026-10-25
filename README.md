@@ -45,7 +45,7 @@ Errors also carry the release. See [Configuration](#configuration) for how the r
 
 ## Middleware
 
-The middleware logs each request as one event. The event has the method, path, status, duration, controller, and action. It also sets an `X-Trace-ID` response header. It reuses an incoming `X-Trace-ID` request header when one is set.
+The middleware logs each request as one event. The event has the method, path, status, duration, controller, action, and route (`/users/:id`, Rails 7.1 and later). LogNorth groups requests into endpoints by the route. It also sets an `X-Trace-ID` response header. It reuses an incoming `X-Trace-ID` request header when one is set.
 
 Requests that match no route are not logged. A 5xx request also carries its user agent, and it sends the queue at once.
 
