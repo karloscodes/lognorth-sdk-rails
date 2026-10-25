@@ -25,7 +25,10 @@ jobs:
           bundler-cache: true
       - run: bundle exec rake test
       # The tag v0.2.0-rc.1 releases the gem version 0.2.0.rc.1, which RubyGems treats as a prerelease.
+      # rake release tags v<gem version> and pushes the branch unless that tag exists, and a tag
+      # checkout has no branch. So a prerelease gets the tag here, in the checkout only.
       - run: |
           version=$(ruby -e 'print Gem::Specification.load("lognorth.gemspec").version')
           test "$version" = "$(echo "${GITHUB_REF_NAME#v}" | tr - .)"
+          git rev-parse -q --verify "refs/tags/v$version" >/dev/null || git tag "v$version"
       - uses: rubygems/release-gem@v1
