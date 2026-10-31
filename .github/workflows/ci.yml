@@ -23,7 +23,7 @@ jobs:
       - run: bundle exec rake test
 
   gitleaks:
-    uses: karloscodes/workflows/.github/workflows/gitleaks.yml@v1.1.0
+    uses: karloscodes/workflows/.github/workflows/gitleaks.yml@main
 
   # The one check to require on main: it passes when every job above passed.
   test:
